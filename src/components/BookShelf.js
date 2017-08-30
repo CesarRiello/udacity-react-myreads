@@ -1,7 +1,7 @@
 import React from 'react';
 import Book from './Book';
 
-const BooksShelf = (props) => {
+const BookShelf = (props) => {
   return (<div className="bookshelf">
     <h2 className="bookshelf-title">{props.shelf.title}</h2>
     <div className="bookshelf-books">
@@ -15,4 +15,4 @@ const BooksShelf = (props) => {
   </div>)
 };
 
-export default BooksShelf;
+export default BookShelf;

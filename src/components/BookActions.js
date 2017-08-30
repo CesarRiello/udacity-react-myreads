@@ -1,6 +1,6 @@
 import React from 'react'
 
-const option = [
+const options = [
   {
     label: 'Move to...',
     value: '',
@@ -20,15 +20,13 @@ const option = [
   }
 ]
 
-const BookActions = (book) => {
-  return (<select name="{book.id}">
-    options.maps(option => {
-      return (<option value="{{option.value}}"
-      {option.disable ?  'disable' : false}
-      {option.value === book.shelf ? 'selected' : false}>
+const BookActions = () => {
+  return (<select name="x">
+    {options.maps(option => {
+      return (<option value={option.value}>
         {option.label}
       </option>)
-    })
+    })}
   </select>);
 };
 
