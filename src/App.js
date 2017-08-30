@@ -22,7 +22,7 @@ class BooksApp extends React.Component {
         books: []
       }
     ],
-    showSearchPage: true
+    showSearchPage: false
   }
 
   render() {
@@ -55,8 +55,8 @@ class BooksApp extends React.Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-              {this.state.bookshelf.maps(shelf => {
-                <BooksShelf shelf={shelf} />
+              {this.state.bookshelfs.map(shelf => {
+                return <BooksShelf shelf={shelf} key={shelf.slugName} />
               })}
             </div>
             <div className="open-search">
