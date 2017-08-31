@@ -1,5 +1,4 @@
 import React from 'react'
-import BookActions from './BookActions'
 
 const Book = (props) => {
   return (<div className="search-books">

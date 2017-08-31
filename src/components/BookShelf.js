@@ -6,10 +6,13 @@ const BookShelf = (props) => {
     <h2 className="bookshelf-title">{props.shelf.title}</h2>
     <div className="bookshelf-books">
       <ol className="books-grid">
-        {props.shelf.books.map(book => {
-          console.log(book)
-          return (<li> <Book book={book} /></li>)
+
+        {(props.books || []).map((book, index) => {
+          if(book.shelf === props.shelf.slugName) {
+            return (<Book book={book} key={book.id} />)
+          }
         })}
+
       </ol>
     </div>
   </div>)

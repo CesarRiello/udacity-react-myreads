@@ -20,10 +20,10 @@ const options = [
   }
 ]
 
-const BookActions = () => {
+const BookActions = (props) => {
   return (<select name="x">
-    {options.maps(option => {
-      return (<option value={option.value}>
+    {options.map(option => {
+      return (<option key={option.value} value={option.value}>
         {option.label}
       </option>)
     })}
