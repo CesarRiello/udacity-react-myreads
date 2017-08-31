@@ -6,10 +6,15 @@ const BookShelf = (props) => {
     <h2 className="bookshelf-title">{props.shelf.title}</h2>
     <div className="bookshelf-books">
       <ol className="books-grid">
-        {props.shelf.books.map(book => {
-          console.log(book)
-          return (<li> <Book book={book} /></li>)
+
+        {(props.books || []).map(book => {
+          // return book.shelf == props.shelf.slugName;
+          // {console.log(book, book.shelf, props.shelf.slugName, book.shelf == props.shelf.slugName)}
+          if(book.shelf == props.shelf.slugName) {
+            return (<li> <Book book={book} key={book.id} /></li>)
+          }
         })}
+
       </ol>
     </div>
   </div>)

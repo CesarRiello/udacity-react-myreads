@@ -9,43 +9,38 @@ import BookList from './components/BookList';
 class BooksApp extends React.Component {
   state = {
     bookshelfs: [
-      {
-        title: 'Currently Reading',
+      { title: 'Currently Reading',
         slugName: 'currentlyReading',
-        books: []
-      },
-      {
-        title: 'Want to Read',
+        books: [] },
+      { title: 'Want to Read',
         slugName: 'wantToRead',
-        books: []
-      },
-      {
-        title: 'Read',
+        books: [] },
+      { title: 'Read',
         slugName: 'read',
-        books: []
-      }
+        books: [] }
     ]
   }
 
   componentDidMount() {
     BooksAPI.getAll().then(books => {
-      console.log(books);
       this.setState({ books })
     })
   }
 
-  return (
-    <div className="app">
-      <Route exact path="/" render={() =>
-        <BookList />
-      } />
+  render() {
+    return (
+      <div className="app">
+        <Route exact path="/" render={() =>
+          <BookList bookshelf={this.state.bookshelfs} books={this.state.books}/>
+        } />
 
-      <Route path="/search" render={() =>
-        <BookSearch />
-      } />
-    </div>
-  )
+        <Route path="/search" render={() =>
+          <BookSearch />
+        } />
+      </div>
+    )
 
+  }
 }
 
 export default BooksApp

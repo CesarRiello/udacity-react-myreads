@@ -7,8 +7,8 @@ const BookList = (props) => {
       <h1>MyReads</h1>
     </div>
     <div className="list-books-content">
-      {this.state.bookshelfs.map(shelf => {
-        return <BookShelf shelf={shelf} key={shelf.slugName} />
+      {props.bookshelf.map(shelf => {
+        return <BookShelf shelf={shelf} key={shelf.slugName} books={props.books} />
       })}
     </div>
     <div className="open-search">
