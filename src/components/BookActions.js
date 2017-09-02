@@ -21,11 +21,15 @@ const options = [
 ]
 
 const BookActions = (props) => {
-  return (<select name="x">
+  return (<select name="selectShelf" value={props.shelf}
+    onChange={event => {
+      props.updateShelves(props.bookId, event.target.value)
+    }}>
     {options.map(option => {
-      return (<option key={option.value} value={option.value}>
+      return (
+      <option key={option.value} value={option.value}>
         {option.label}
-      </option>)
+      </option>);
     })}
   </select>);
 };

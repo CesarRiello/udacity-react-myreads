@@ -8,7 +8,7 @@ const BookList = (props) => {
     </div>
     <div className="list-books-content">
       {(props.bookshelf || []).map(shelf => {
-        return <BookShelf shelf={shelf} key={shelf.slugName} books={props.books} />
+        return <BookShelf shelf={shelf} key={shelf.slugName} books={props.books} updateShelves={props.updateShelves} />
       })}
     </div>
     <div className="open-search">
