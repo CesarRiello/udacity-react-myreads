@@ -20,23 +20,46 @@ class BooksApp extends React.Component {
         books: [] }
     ],
     books: [],
+    booksResult: [],
     search: []
-  }
+  };
 
   componentDidMount() {
     BooksAPI.getAll().then(books => {
       this.setState({ books });
     })
-  }
+  };
+
+  updateBooks = (books, book) => {
+    return books.map(_book => {
+      return _book.id === book.id ? book : _book;
+    });
+  };
 
   updateShelves = (book, shelf) => {
-    console.log(book, shelf);
     BooksAPI.update(book, shelf)
     .then((result) => {
-      console.log(result);
+      //useless api result
+      book.shelf = shelf;
+      let _books = this.state.updateBooks(this.state.books, book);
+      this.setState({_books});
     }).catch((e)=> {
-      console.log(e);
+      console.error(e);
     })
+  };
+
+  search = (query) => {
+    console.log(query);
+    if (query.length > 3) {
+      BooksAPI.search(query)
+        .then(result => {
+          console.log(result);
+          if (result.error) console.error(result.error); return;
+          this.setState({booksResult:result});
+      }).catch((e)=> {
+        console.error(e);
+      })
+    }
   }
 
   render() {
@@ -47,12 +70,12 @@ class BooksApp extends React.Component {
         } />
 
         <Route path="/search" render={() =>
-          <BookSearch />
+          <BookSearch search={this.search} booksResult={this.state.booksResult} updateShelves={this.updateShelves} />
         } />
       </div>
     )
+  };
 
-  }
 }
 
 export default BooksApp

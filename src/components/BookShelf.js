@@ -7,10 +7,11 @@ const BookShelf = (props) => {
     <div className="bookshelf-books">
       <ol className="books-grid">
 
-        {(props.books || []).map((book, index) => {
+        {(props.books || []).map(book => {
           if(book.shelf === props.shelf.slugName) {
             return (<Book book={book} key={book.id} updateShelves={props.updateShelves} />)
           }
+          return false;
         })}
 
       </ol>
