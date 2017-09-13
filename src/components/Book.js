@@ -3,7 +3,7 @@ import BookActions from './BookActions'
 
 const Book = (props) => {
 
-  return (<li className="book">
+  return (<li className="book" style={{opacity: (props.search && props.book.shelf) ? '0.5' : '1'}}>
     <div className="book-top">
 
       <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url(' + props.book.imageLinks.smallThumbnail + ')' }}></div>

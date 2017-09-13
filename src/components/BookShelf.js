@@ -10,7 +10,6 @@ const BookShelf = (props) => {
         {(props.books || []).map(book => {
           if(book.shelf === props.shelf.slugName) {
             return (<Book book={book} key={book.id} updateShelves={props.updateShelves} />)
-
           }
           return false;
         })}

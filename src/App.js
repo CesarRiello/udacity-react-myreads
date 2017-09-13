@@ -31,32 +31,42 @@ class BooksApp extends React.Component {
   };
 
   updateBooks = (books, book) => {
-    return books.map(_book => {
-      return _book.id === book.id ? book : _book;
-    });
+    let _books = books.filter(_book => _book.id !== book.id);
+    if(book.shelf !== 'none')
+      _books.push(book);
+
+    return _books;
   };
 
   updateShelves = (book, shelf) => {
-    console.log(book, shelf);
     BooksAPI.update(book, shelf)
     .then((result) => {
       //useless api result
       book.shelf = shelf;
       let _books = this.updateBooks(this.state.books, book);
+
       this.setState({_books});
     }).catch((e)=> {
       console.error(e);
     })
   };
 
+
+  populateShelves = (results, books) => {
+    return results.map(result => 
+      (books.find(book => book.id === result.id) || result)
+    )
+  };
+
   search = (query) => {
     if (query.length > 3) {
       BooksAPI.search(query)
-        .then(booksResult => {
-          if (booksResult.error) {
-            console.error(booksResult.error);
+        .then(result => {
+          if (result.error) {
+            console.error(result.error);
             return;
           }
+          let booksResult = this.populateShelves(result, this.state.books);
           this.setState({booksResult});
       }).catch((e)=> {
         console.error(e);

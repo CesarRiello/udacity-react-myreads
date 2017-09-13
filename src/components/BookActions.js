@@ -3,7 +3,7 @@ import React from 'react'
 const options = [
   {
     label: 'Move to...',
-    value: '',
+    value: 'moveto',
     disabled: true
   },
   {
@@ -17,6 +17,10 @@ const options = [
   {
     label: 'Read',
     value: 'read'
+  },
+  {
+    label: 'None',
+    value: 'none'
   }
 ];
 
@@ -27,7 +31,7 @@ let BookOptions = options.map(option => {
 });
 
 const BookActions = (props) => {
-  return (<select name="selectShelf" value={props.shelf}
+  return (<select name="selectShelf" value={props.shelf || 'none'}
     onChange={event => {
       props.updateShelves(props.book, event.target.value)
     }}>
